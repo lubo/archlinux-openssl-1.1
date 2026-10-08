@@ -211,8 +211,15 @@ prepare() {
 build() {
 	cd "$srcdir/$_pkgname-$_ver"
 
-	./Configure --prefix=/usr --openssldir=/etc/ssl --libdir=lib/openssl-1.1 \
-		shared no-ssl3-method enable-ec_nistp_64_gcc_128 "linux-${CARCH}"
+	./Configure \
+		--libdir=lib/openssl-1.1 \
+		--openssldir=/etc/ssl \
+		--prefix=/usr \
+		enable-ec_nistp_64_gcc_128 \
+		no-afalgeng \
+		no-ssl3-method \
+		shared \
+		"linux-${CARCH}"
 
 	make depend
 	make
